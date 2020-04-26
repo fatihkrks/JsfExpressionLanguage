@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <title>Some title</title>
+    ...
+</h:head>
+<body>
+	<h:form prependId="false">
+		<h3>Please Enter key and value</h3>
+		<table>
+			<tr>
+
+				<td>Key :</td>
+				<td><h:inputText value="#{ellangBean.key}" id="keyId" /></td>
+
+			</tr>
+			<tr>
+
+				<td>Value :</td>
+				<td><h:inputText value="#{ellangBean['value']}" id="valueId" /></td>
+
+			</tr>
+
+		</table>
+		<p>
+			<h:selectOneMenu value="#{ellangBean.selectedFramework}"
+				id="frameworksId">
+
+				<f:selectItems value="#{ellangBean.frameworkMap}" />
+			</h:selectOneMenu>
+			<h:commandButton value="Add">
+				<f:ajax execute="keyId valueId frameworksId"
+					listener="#{ellangBean.addFramework(ellangBean.key,ellangBean.value)}"
+					render="frameworksId">
+
+				</f:ajax>
+
+			</h:commandButton>
+		</p>
+
+
+	</h:form>
+</body>
+</html>
